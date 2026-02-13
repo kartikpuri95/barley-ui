@@ -256,7 +256,35 @@
   <button class="mobile-toggle" onclick="document.querySelector('.docs-sidebar').classList.toggle('open')">☰ Menu</button>
 
   <aside class="docs-sidebar">
-
+    <header>
+      <a href="{{ get_url(path="_index.md") }}" style="text-decoration: none; color: inherit;">🌾 Barley</a>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><a href="{{ get_url(path="_index.md") }}">Introduction</a></li>
+        <li><a href="{{ get_url(path="usage.md") }}">Installation & Usage</a></li>
+        <li>
+          <strong style="display:block; margin: var(--space-4) 0 var(--space-2); font-size: 0.9em; opacity: 0.7;">COMPONENTS</strong>
+        </li>
+        <li><a href="{{ get_url(path="components/accordion.md") }}">Accordion</a></li>
+        <li><a href="{{ get_url(path="components/alert.md") }}">Alert</a></li>
+        <li><a href="{{ get_url(path="components/badge.md") }}">Badge</a></li>
+        <li><a href="{{ get_url(path="components/button.md") }}">Button</a></li>
+        <li><a href="{{ get_url(path="components/card.md") }}">Card</a></li>
+        <li><a href="{{ get_url(path="components/dialog.md") }}">Dialog</a></li>
+        <li><a href="{{ get_url(path="components/dropdown.md") }}">Dropdown</a></li>
+        <li><a href="{{ get_url(path="components/form.md") }}">Form</a></li>
+        <li><a href="{{ get_url(path="components/progress.md") }}">Progress</a></li>
+        <li><a href="{{ get_url(path="components/sidebar.md") }}">Sidebar</a></li>
+        <li><a href="{{ get_url(path="components/skeleton.md") }}">Skeleton</a></li>
+        <li><a href="{{ get_url(path="components/spinner.md") }}">Spinner</a></li>
+        <li><a href="{{ get_url(path="components/table.md") }}">Table</a></li>
+        <li><a href="{{ get_url(path="components/tabs.md") }}">Tabs</a></li>
+        <li><a href="{{ get_url(path="components/toast.md") }}">Toast</a></li>
+        <li><a href="{{ get_url(path="components/tooltip.md") }}">Tooltip</a></li>
+      </ul>
+    </nav>
 
     <footer>
       <button class="small outline" onclick="toggleTheme()">Dark Mode</button>

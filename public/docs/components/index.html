@@ -256,7 +256,35 @@
   <button class="mobile-toggle" onclick="document.querySelector('.docs-sidebar').classList.toggle('open')">☰ Menu</button>
 
   <aside class="docs-sidebar">
-
+    <header>
+      <a href="/docs/_index.md" style="text-decoration: none; color: inherit;">🌾 Barley</a>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><a href="/docs/_index.md">Introduction</a></li>
+        <li><a href="/docs/usage.md">Installation & Usage</a></li>
+        <li>
+          <strong style="display:block; margin: var(--space-4) 0 var(--space-2); font-size: 0.9em; opacity: 0.7;">COMPONENTS</strong>
+        </li>
+        <li><a href="/docs/components/accordion.md">Accordion</a></li>
+        <li><a href="/docs/components/alert.md">Alert</a></li>
+        <li><a href="/docs/components/badge.md">Badge</a></li>
+        <li><a href="/docs/components/button.md">Button</a></li>
+        <li><a href="/docs/components/card.md">Card</a></li>
+        <li><a href="/docs/components/dialog.md">Dialog</a></li>
+        <li><a href="/docs/components/dropdown.md">Dropdown</a></li>
+        <li><a href="/docs/components/form.md">Form</a></li>
+        <li><a href="/docs/components/progress.md">Progress</a></li>
+        <li><a href="/docs/components/sidebar.md">Sidebar</a></li>
+        <li><a href="/docs/components/skeleton.md">Skeleton</a></li>
+        <li><a href="/docs/components/spinner.md">Spinner</a></li>
+        <li><a href="/docs/components/table.md">Table</a></li>
+        <li><a href="/docs/components/tabs.md">Tabs</a></li>
+        <li><a href="/docs/components/toast.md">Toast</a></li>
+        <li><a href="/docs/components/tooltip.md">Tooltip</a></li>
+      </ul>
+    </nav>
 
     <footer>
       <button class="small outline" onclick="toggleTheme()">Dark Mode</button>
@@ -272,8 +300,8 @@
   </p>
   
   <div style="display: flex; gap: var(--space-4); justify-content: center;">
-    <a href="/components/button" role="button" data-variant="primary" class="large">Components</a>
-    <a href="/usage" role="button" class="large">Get Started</a>
+    <a href="/docs/components/button/" role="button" data-variant="primary" class="large">Components</a>
+    <a href="/docs/usage/" role="button" class="large">Get Started</a>
   </div>
 </section>
 
