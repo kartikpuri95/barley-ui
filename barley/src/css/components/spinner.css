@@ -1,0 +1,26 @@
+/* Spinner */
+.spinner, [data-role="spinner"] {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--muted-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%; /* Spinners are circular usually */
+  animation: spin 0.8s linear infinite;
+}
+
+[data-role="spinner"][data-size="small"] {
+  width: 1rem;
+  height: 1rem;
+  border-width: 2px;
+}
+
+[data-role="spinner"][data-size="large"] {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

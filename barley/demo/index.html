@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barley UI - Library Demo</title>
+    <link rel="stylesheet" href="../dist/barley.min.css">
+    <script src="../dist/barley.min.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <header class="mb-8">
+        <h1>Barley UI <small>Full Demo</small></h1>
+        <p>Kitchen sink verification of all components.</p>
+        <button data-variant="primary" onclick="barley.toast('Welcome to Barley UI!', 'Initialized')">Toast Me</button>
+    </header>
+
+    <div class="grid">
+        <!-- Buttons -->
+        <div data-role="card">
+            <h3>Buttons</h3>
+            <div class="flex">
+                <button data-variant="default" title="Default Button">Default</button>
+                <button data-variant="primary" title="Primary Action">Primary</button>
+                <button data-variant="secondary">Secondary</button>
+                <button data-variant="accent">Accent</button>
+                <button data-variant="ghost">Ghost</button>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div data-role="card">
+            <h3>Badges</h3>
+            <div class="flex">
+                <span data-role="badge" data-variant="primary">Primary</span>
+                <span data-role="badge" data-variant="success">Success</span>
+                <span data-role="badge" data-variant="warning">Warning</span>
+                <span data-role="badge" data-variant="danger">Error</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div role="alert" data-variant="success">
+        <strong>Success:</strong> Your changes have been saved successfully.
+    </div>
+    <div role="alert" data-variant="warning">
+        <strong>Warning:</strong> You are approaching your usage limit.
+    </div>
+
+    <!-- Progress & Spinner -->
+    <div class="grid">
+        <div data-role="card">
+            <h3>Progress</h3>
+            <progress value="70" max="100"></progress>
+            <h3>Spinner</h3>
+            <div data-role="spinner"></div>
+            <div data-role="spinner" data-size="large"></div>
+        </div>
+
+        <div data-role="card">
+             <h3>Skeleton</h3>
+             <div data-role="skeleton" data-shape="circle"></div>
+             <div data-role="skeleton" data-shape="text"></div>
+             <div data-role="skeleton" data-shape="text" style="width: 80%"></div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <section class="mb-8 mt-4">
+        <h2>Tabs</h2>
+        <barley-tabs>
+            <div role="tablist">
+                <button role="tab" aria-selected="true" tabindex="0">Account</button>
+                <button role="tab" tabindex="-1">Settings</button>
+                <button role="tab" tabindex="-1">Billing</button>
+            </div>
+            <div role="tabpanel">
+                <p>Account details go here.</p>
+            </div>
+            <div role="tabpanel" hidden>
+                <p>Global settings go here.</p>
+            </div>
+            <div role="tabpanel" hidden>
+                <p>Billing information goes here.</p>
+            </div>
+        </barley-tabs>
+    </section>
+
+    <!-- Accordion -->
+    <section class="mb-8">
+        <h2>Accordion</h2>
+        <details>
+            <summary>What is Barley?</summary>
+            <p>Barley is a lightweight, semantic UI library.</p>
+        </details>
+        <details>
+            <summary>Is it dependency free?</summary>
+            <p>Yes, it has zero external dependencies.</p>
+        </details>
+    </section>
+
+    <!-- Dialog & Dropdown -->
+    <section class="mb-8 flex">
+        <button onclick="document.getElementById('demo-dialog').showModal()" data-variant="outline">Open Dialog</button>
+        
+        <barley-dropdown>
+            <button popovertarget="menu-1" data-variant="secondary">Open Dropdown ▾</button>
+            <div popover id="menu-1">
+                <button role="menuitem">Profile</button>
+                <button role="menuitem">Settings</button>
+                <hr>
+                <button role="menuitem" style="color: var(--color-danger)">Logout</button>
+            </div>
+        </barley-dropdown>
+    </section>
+
+    <!-- Typography -->
+    <section class="mb-8 mt-4">
+        <h2>Typography</h2>
+        <div data-role="card">
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <p>This is a standard paragraph of text. It demonstrates the base font size, line height, and color of the Barley library. <strong>Strong text</strong> is bold, and <em>emphasized text</em> is italic.</p>
+            <p>You can also use <a href="#">inline links</a> which have a distinct style.</p>
+            
+            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid var(--border);">
+            
+            <h3>Lists</h3>
+            <ul>
+                <li>Unordered list item one</li>
+                <li>Unordered list item two</li>
+                <li>Unordered list item three</li>
+            </ul>
+            
+            <ol>
+                <li>Ordered list item one</li>
+                <li>Ordered list item two</li>
+            </ol>
+            
+            <h3>Code</h3>
+            <p>Inline code looks like <code>const foo = 'bar';</code>.</p>
+        </div>
+    </section>
+
+    <!-- Footer Tooltip Test -->
+    <p class="text-center mt-4" style="color: var(--muted);">
+        Hover over <span title="This is a purely CSS tooltip!" style="text-decoration: underline;">this text</span> to test tooltips.
+    </p>
+
+</div>
+
+<!-- Dialog Definition -->
+<dialog id="demo-dialog">
+    <header>
+        <h2>Dialog Title</h2>
+    </header>
+    <main>
+        <p>This is a native HTML dialog styled by Barley.</p>
+        <p>It supports animations and backdrops out of the box.</p>
+    </main>
+    <footer>
+        <button onclick="this.closest('dialog').close()" data-variant="ghost">Cancel</button>
+        <button onclick="this.closest('dialog').close()" data-variant="primary">Confirm</button>
+    </footer>
+</dialog>
+
+</body>
+</html>

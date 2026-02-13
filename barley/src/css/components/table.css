@@ -1,0 +1,35 @@
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: var(--space-4);
+  font-size: 0.95rem;
+}
+
+thead {
+  border-bottom: 2px solid var(--fg);
+}
+
+th {
+  padding: var(--space-3) var(--space-2);
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+td {
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Striped Rows (Optional via class or attribute) */
+table[data-striped="true"] tbody tr:nth-child(odd) {
+  background-color: var(--muted-light);
+}
+
+tbody tr:hover {
+  background-color: var(--muted-light);
+}

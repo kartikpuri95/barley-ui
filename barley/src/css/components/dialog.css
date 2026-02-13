@@ -1,0 +1,80 @@
+/* Dialog */
+dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 50; /* Z-Modal */
+  width: 100%;
+  max-width: 32rem;
+  max-height: 85vh;
+  margin: auto;
+  padding: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sharp);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.1); /* Sharp shadow */
+  overflow: hidden;
+  color: var(--fg);
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    overlay 150ms ease allow-discrete,
+    display 150ms ease allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition:
+    background-color 150ms ease,
+    overlay 150ms ease allow-discrete,
+    display 150ms ease allow-discrete;
+}
+
+dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+/* Dialog Layout */
+dialog > header {
+  padding: var(--space-6);
+  padding-bottom: var(--space-2);
+}
+
+dialog > header h2 {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+dialog > main, dialog > .body {
+  padding: var(--space-6);
+  padding-top: var(--space-2);
+}
+
+dialog > footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--muted-light);
+  border-top: 1px solid var(--border);
+}

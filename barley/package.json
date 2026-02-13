@@ -1,0 +1,11 @@
+{
+  "name": "barley-ui",
+  "version": "0.1.0",
+  "description": "Sharp, minimal, semantic UI library. ~8KB.",
+  "main": "dist/barley.min.css",
+  "scripts": {
+    "build": "make dist"
+  },
+  "author": "Kartik Puri",
+  "license": "MIT"
+}

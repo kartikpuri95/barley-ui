@@ -1,0 +1,30 @@
+/* Inputs */
+input, textarea, select {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) 0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--fg);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  border-radius: 0;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  margin-bottom: var(--space-4);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-accent);
+}
+
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

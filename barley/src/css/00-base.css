@@ -1,0 +1,42 @@
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--leading-tight);
+  margin: 0 0 var(--space-4);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; border-bottom: 2px solid var(--border); padding-bottom: var(--space-2); }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+p { margin: 0 0 var(--space-4); max-width: 65ch; opacity: 0.9; }
+
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a:hover { color: var(--color-accent); }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--muted-light);
+  padding: 0.2em 0.4em;
+  border: 1px solid var(--border);
+}

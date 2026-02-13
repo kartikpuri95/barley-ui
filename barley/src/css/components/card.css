@@ -1,0 +1,16 @@
+/* Card */
+[data-role="card"] {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: var(--space-6);
+  border-radius: var(--radius-sharp);
+  margin-bottom: var(--space-4);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+[data-role="card"][data-interactive="true"]:hover {
+  transform: translateY(-2px);
+  border-color: var(--fg);
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--border);
+}

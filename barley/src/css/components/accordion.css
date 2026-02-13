@@ -1,0 +1,59 @@
+/* Accordion */
+details {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: var(--surface);
+}
+
+details:first-of-type {
+  border-top-left-radius: var(--radius-sharp);
+  border-top-right-radius: var(--radius-sharp);
+}
+
+details:last-of-type {
+  border-bottom: 1px solid var(--border);
+  border-bottom-left-radius: var(--radius-sharp);
+  border-bottom-right-radius: var(--radius-sharp);
+}
+
+summary {
+  padding: var(--space-4);
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none; /* Hide default triangle */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  background: var(--surface);
+  transition: background-color var(--transition-fast);
+}
+
+summary:hover {
+  background-color: var(--muted-light);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Custom indicator */
+summary::after {
+  content: "+";
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+details[open] summary::after {
+  content: "−"; /* Minus sign */
+}
+
+details[open] summary {
+  background-color: var(--muted-light);
+  border-bottom: 1px solid var(--border);
+}
+
+details > div, details > p {
+  padding: var(--space-4);
+}

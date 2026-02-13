@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barley UI - Sharp. Minimal. Semantic.</title>
+  <style>
+    /* =========================================
+       BARLEY CSS (Embed)
+       ========================================= */
+    /* * Barley UI - Theme
+    * "Sharp. Minimal. Semantic."
+    */
+
+    :root {
+      /* Palette: Monochrome + Gold */
+      --bg: #ffffff;
+      --fg: #111111;
+      --surface: #ffffff;
+      --border: #e0e0e0;
+      --muted: #757575;
+      --muted-light: #f5f5f5;
+
+      /* 4 Core Semantic Colors */
+      --color-default: #ffffff;
+      --color-default-fg: #111111;
+      --color-default-border: #e0e0e0;
+
+      --color-primary: #111111;
+      --color-primary-fg: #ffffff;
+
+      --color-secondary: #f4f4f5;
+      --color-secondary-fg: #111111;
+
+      --color-accent: #D4AF37; /* Barley Gold */
+      --color-accent-fg: #ffffff;
+
+      /* Functional Colors */
+      --color-success: #10b981;
+      --color-success-fg: #ffffff;
+      --color-warning: #f59e0b;
+      --color-warning-fg: #000000;
+      --color-danger: #ef4444;
+      --color-danger-fg: #ffffff;
+
+      /* Spacing */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+
+      /* Typography */
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --text-base: 16px;
+      --leading-normal: 1.5;
+      --leading-tight: 1.2;
+
+      /* Properties */
+      --radius-sharp: 0px;
+      --radius-sm: 2px;
+      --border-width: 1px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* * Dark Theme - Opt-in via data-theme="dark"
+    */
+    :root[data-theme="dark"] {
+          --bg: #111111;
+          --fg: #eeeeee;
+          --surface: #1a1a1a;
+          --border: #333333;
+          --muted: #888888;
+          --muted-light: #222222;
+
+          --color-default: #1a1a1a;
+          --color-default-fg: #eeeeee;
+          --color-default-border: #333333;
+
+          --color-primary: #eeeeee;
+          --color-primary-fg: #111111;
+
+          --color-secondary: #333333;
+          --color-secondary-fg: #eeeeee;
+          
+          --color-accent: #D4AF37;
+          --color-accent-fg: #000000;
+    }
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      line-height: var(--leading-tight);
+      margin: 0 0 var(--space-4);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.75rem; border-bottom: 2px solid var(--border); padding-bottom: var(--space-2); }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1rem; }
+    h6 { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    p { margin: 0 0 var(--space-4); max-width: 65ch; opacity: 0.9; }
+
+    a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: var(--color-accent); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--muted-light);
+      padding: 0.2em 0.4em;
+      border: 1px solid var(--border);
+    }
+    /* Utilities */
+    .container { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: var(--space-8) var(--space-4); 
+    }
+
+    .flex { 
+      display: flex; 
+      gap: var(--space-4); 
+      flex-wrap: wrap; 
+      align-items: center; 
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: var(--space-4); 
+    }
+
+    .mt-4 { margin-top: var(--space-4); }
+    .mb-4 { margin-bottom: var(--space-4); }
+    .mb-8 { margin-bottom: var(--space-8); }
+
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    /* Accordion */
+    details {
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: var(--surface);
+    }
+
+    details:first-of-type {
+      border-top-left-radius: var(--radius-sharp);
+      border-top-right-radius: var(--radius-sharp);
+    }
+
+    details:last-of-type {
+      border-bottom: 1px solid var(--border);
+      border-bottom-left-radius: var(--radius-sharp);
+      border-bottom-right-radius: var(--radius-sharp);
+    }
+
+    summary {
+      padding: var(--space-4);
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none; /* Hide default triangle */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background: var(--surface);
+      transition: background-color var(--transition-fast);
+    }
+
+    summary:hover {
+      background-color: var(--muted-light);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Custom indicator */
+    summary::after {
+      content: "+";
+      font-size: 1.25em;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    details[open] summary::after {
+      content: "−"; /* Minus sign */
+    }
+
+    details[open] summary {
+      background-color: var(--muted-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    details > div, details > p {
+      padding: var(--space-4);
+    }
+    /* Alert */
+    [role="alert"], .alert {
+      position: relative;
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background-color: var(--surface);
+      border-left: 4px solid var(--border);
+      border-radius: var(--radius-sharp);
+      margin-bottom: var(--space-4);
+      font-size: 0.95rem;
+    }
+
+    [role="alert"][data-variant="success"] {
+      border-left-color: var(--color-success);
+      background-color: color-mix(in srgb, var(--color-success) 5%, var(--bg)); 
+    }
+
+    [role="alert"][data-variant="warning"] {
+      border-left-color: var(--color-warning);
+      background-color: color-mix(in srgb, var(--color-warning) 10%, var(--bg));
+    }
+
+    [role="alert"][data-variant="danger"] {
+      border-left-color: var(--color-danger);
+      background-color: color-mix(in srgb, var(--color-danger) 5%, var(--bg));
+      color: var(--color-danger);
+    }
+
+    [role="alert"][data-variant="accent"] {
+      border-left-color: var(--color-accent);
+      background-color: color-mix(in srgb, var(--color-accent) 5%, var(--bg));
+    }
+    /* Badge */
+    .badge, [data-role="badge"] {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 0.15em 0.5em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-sm);
+      vertical-align: middle;
+      border: 1px solid transparent;
+      
+      /* Default Styles */
+      background-color: var(--muted-light);
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    /* Variants */
+    [data-role="badge"][data-variant="primary"] {
+      background-color: var(--color-primary);
+      color: var(--color-primary-fg);
+      border-color: var(--color-primary);
+    }
+
+    [data-role="badge"][data-variant="secondary"] {
+      background-color: var(--color-secondary);
+      color: var(--color-secondary-fg);
+      border-color: var(--color-secondary);
+    }
+
+    [data-role="badge"][data-variant="accent"] {
+      background-color: var(--color-accent);
+      color: var(--color-accent-fg);
+      border-color: var(--color-accent);
+    }
+
+    [data-role="badge"][data-variant="success"] {
+      background-color: var(--color-success);
+      color: var(--color-success-fg);
+      border-color: var(--color-success);
+    }
+
+    [data-role="badge"][data-variant="warning"] {
+      background-color: var(--color-warning);
+      color: var(--color-warning-fg);
+      border-color: var(--color-warning);
+    }
+
+    [data-role="badge"][data-variant="danger"] {
+      background-color: var(--color-danger);
+      color: var(--color-danger-fg);
+      border-color: var(--color-danger);
+    }
+
+    [data-role="badge"][data-variant="outline"] {
+      background-color: transparent;
+      border-color: var(--fg);
+      color: var(--fg);
+    }
+    /* Buttons */
+    button, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6em 1.2em;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      border: var(--border-width) solid transparent;
+      border-radius: var(--radius-sharp);
+      transition: all var(--transition-fast);
+      letter-spacing: 0.01em;
+      background: none;
+      color: inherit;
+    }
+
+    /* 1. Default (Neutral/Bordered) */
+    button:not([data-variant]), button[data-variant="default"] {
+      background-color: var(--color-default);
+      color: var(--color-default-fg);
+      border-color: var(--color-default-border);
+    }
+    button:not([data-variant]):hover, button[data-variant="default"]:hover {
+      border-color: var(--fg);
+      transform: translateY(-1px);
+    }
+
+    /* 2. Primary (Strong) */
+    button[data-variant="primary"] {
+      background-color: var(--color-primary);
+      color: var(--color-primary-fg);
+      border-color: var(--color-primary);
+    }
+    button[data-variant="primary"]:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+
+    /* 3. Secondary (Subtle/Filled) */
+    button[data-variant="secondary"] {
+      background-color: var(--color-secondary);
+      color: var(--color-secondary-fg);
+      border-color: var(--color-secondary);
+    }
+    button[data-variant="secondary"]:hover {
+      background-color: var(--border); /* darken slightly */
+    }
+
+    /* 4. Accent (Brand) */
+    button[data-variant="accent"] {
+      background-color: var(--color-accent);
+      color: var(--color-accent-fg);
+      border-color: var(--color-accent);
+    }
+    button[data-variant="accent"]:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* Extra: Ghost */
+    button[data-variant="ghost"] {
+      background-color: transparent;
+      color: var(--fg);
+      border-color: transparent;
+    }
+    button[data-variant="ghost"]:hover {
+      background-color: var(--muted-light);
+    }
+    /* Card */
+    [data-role="card"] {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: var(--space-6);
+      border-radius: var(--radius-sharp);
+      margin-bottom: var(--space-4);
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    [data-role="card"][data-interactive="true"]:hover {
+      transform: translateY(-2px);
+      border-color: var(--fg);
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--border);
+    }
+    /* Dialog */
+    dialog {
+      position: fixed;
+      inset: 0;
+      z-index: 50; /* Z-Modal */
+      width: 100%;
+      max-width: 32rem;
+      max-height: 85vh;
+      margin: auto;
+      padding: 0;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sharp);
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.1); /* Sharp shadow */
+      overflow: hidden;
+      color: var(--fg);
+
+      opacity: 0;
+      transform: scale(0.95);
+      transition:
+        opacity 150ms ease,
+        transform 150ms ease,
+        overlay 150ms ease allow-discrete,
+        display 150ms ease allow-discrete;
+    }
+
+    dialog[open] {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @starting-style {
+      dialog[open] {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0);
+      transition:
+        background-color 150ms ease,
+        overlay 150ms ease allow-discrete,
+        display 150ms ease allow-discrete;
+    }
+
+    dialog[open]::backdrop {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    @starting-style {
+      dialog[open]::backdrop {
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+
+    /* Dialog Layout */
+    dialog > header {
+      padding: var(--space-6);
+      padding-bottom: var(--space-2);
+    }
+
+    dialog > header h2 {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    dialog > main, dialog > .body {
+      padding: var(--space-6);
+      padding-top: var(--space-2);
+    }
+
+    dialog > footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      background: var(--muted-light);
+      border-top: 1px solid var(--border);
+    }
+    /* Dropdown */
+    barley-dropdown {
+      display: inline-block;
+    }
+
+    barley-dropdown [popover] {
+      position: fixed;
+      margin: 0;
+      padding: var(--space-2);
+      min-width: 12rem;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sharp);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(-4px);
+      transition:
+        opacity 150ms ease-out,
+        transform 150ms ease-out,
+        display 150ms allow-discrete,
+        overlay 150ms allow-discrete;
+    }
+
+    barley-dropdown [popover]:popover-open,
+    barley-dropdown [popover][data-state="open"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @starting-style {
+      barley-dropdown [popover]:popover-open,
+      barley-dropdown [popover][data-state="open"] {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+    }
+
+    barley-dropdown hr {
+      margin: var(--space-2) 0;
+      border: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Menu Items */
+    barley-dropdown [role="menuitem"] {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: var(--space-2) var(--space-3);
+      font-size: 0.9em;
+      text-align: left;
+      color: var(--fg);
+      background: none;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    barley-dropdown [role="menuitem"]:hover, 
+    barley-dropdown [role="menuitem"]:focus {
+      background-color: var(--muted-light);
+      outline: none;
+      color: var(--color-primary);
+    }
+    /* Inputs */
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      padding: var(--space-2) 0;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--fg);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--border);
+      border-radius: 0;
+      outline: none;
+      transition: border-color var(--transition-fast);
+      margin-bottom: var(--space-4);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--color-accent);
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: var(--space-1);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    /* Progress & Meter */
+    progress {
+      appearance: none;
+      width: 100%;
+      height: 0.5rem;
+      border: none;
+      border-radius: var(--radius-sharp);
+      overflow: hidden;
+      background-color: var(--muted-light);
+      margin-bottom: var(--space-4);
+    }
+
+    progress::-webkit-progress-bar {
+      background-color: var(--muted-light);
+    }
+
+    progress::-webkit-progress-value {
+      background-color: var(--color-primary);
+      transition: width var(--transition-fast);
+    }
+
+    progress::-moz-progress-bar {
+      background-color: var(--color-primary);
+    }
+
+    /* Meter */
+    meter {
+      appearance: none;
+      width: 100%;
+      height: 0.5rem;
+      border: none;
+      border-radius: var(--radius-sharp);
+      overflow: hidden;
+      background: var(--muted-light);
+      margin-bottom: var(--space-4);
+    }
+
+    meter::-webkit-meter-bar {
+      background: var(--muted-light);
+      border: none;
+      height: 0.5rem;
+    }
+
+    meter::-webkit-meter-optimum-value { background: var(--color-success); }
+    meter::-webkit-meter-suboptimum-value { background: var(--color-warning); }
+    meter::-webkit-meter-even-less-good-value { background: var(--color-danger); }
+
+    meter::-moz-meter-bar { background: var(--color-success); }
+    meter:-moz-meter-sub-optimum::-moz-meter-bar { background: var(--color-warning); }
+    meter:-moz-meter-sub-sub-optimum::-moz-meter-bar { background: var(--color-danger); }
+    /* Sidebar Layout */
+    :root {
+      --sidebar-width: 16rem;
+      --topnav-height: 4rem;
+    }
+
+    [data-layout="sidebar"] {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      min-height: 100vh;
+    }
+
+    [data-layout="sidebar"] > aside {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    [data-layout="sidebar"] > aside > header {
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--border);
+      height: var(--topnav-height);
+      display: flex;
+      align-items: center;
+    }
+
+    [data-layout="sidebar"] > aside > nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-4);
+    }
+
+    [data-layout="sidebar"] > aside > footer {
+      padding: var(--space-4);
+      border-top: 1px solid var(--border);
+    }
+
+    [data-layout="sidebar"] > main {
+      min-width: 0;
+    }
+
+    /* Navigation Links */
+    [data-layout="sidebar"] nav a {
+      display: block;
+      padding: var(--space-2) var(--space-3);
+      color: var(--fg);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-1);
+    }
+
+    [data-layout="sidebar"] nav a:hover,
+    [data-layout="sidebar"] nav a[aria-current="page"] {
+      background-color: var(--muted-light);
+      color: var(--color-primary);
+    }
+
+    /* Mobile / Responsive */
+    [data-sidebar-toggle] { display: none; }
+
+    @media (max-width: 768px) {
+      [data-layout="sidebar"] {
+        grid-template-columns: 1fr;
+      }
+
+      [data-layout="sidebar"] > aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform var(--transition-fast);
+        box-shadow: 4px 0 8px rgba(0,0,0,0.1);
+      }
+
+      [data-layout="sidebar"][data-open="true"] > aside {
+        transform: translateX(0);
+      }
+      
+      /* Toggle Button visibility usually handled by topnav which needs its own styles or utility */
+      [data-sidebar-toggle] { display: inline-flex; }
+    }
+    /* Skeleton */
+    [data-role="skeleton"] {
+      background: var(--muted-light);
+      border-radius: var(--radius-sm);
+      animation: pulse 1.5s ease-in-out infinite;
+      margin-bottom: var(--space-2);
+    }
+
+    [data-role="skeleton"][data-shape="text"] {
+      height: 1em;
+      width: 100%;
+    }
+
+    [data-role="skeleton"][data-shape="rect"] {
+      width: 100%;
+      height: 100px;
+    }
+
+    [data-role="skeleton"][data-shape="circle"] {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    /* Spinner */
+    .spinner, [data-role="spinner"] {
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid var(--muted-light);
+      border-top-color: var(--color-primary);
+      border-radius: 50%; /* Spinners are circular usually */
+      animation: spin 0.8s linear infinite;
+    }
+
+    [data-role="spinner"][data-size="small"] {
+      width: 1rem;
+      height: 1rem;
+      border-width: 2px;
+    }
+
+    [data-role="spinner"][data-size="large"] {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-width: 3px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    /* Table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: var(--space-4);
+      font-size: 0.95rem;
+    }
+
+    thead {
+      border-bottom: 2px solid var(--fg);
+    }
+
+    th {
+      padding: var(--space-3) var(--space-2);
+      text-align: left;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    td {
+      padding: var(--space-3) var(--space-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Striped Rows (Optional via class or attribute) */
+    table[data-striped="true"] tbody tr:nth-child(odd) {
+      background-color: var(--muted-light);
+    }
+
+    tbody tr:hover {
+      background-color: var(--muted-light);
+    }
+    /* Tabs */
+    barley-tabs {
+      display: block;
+      margin-bottom: var(--space-4);
+    }
+
+    [role="tablist"] {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: 4px;
+      background-color: var(--muted-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sharp);
+    }
+
+    [role="tab"] {
+      flex: 1;
+      padding: var(--space-2) var(--space-4);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    [role="tab"]:hover {
+      color: var(--fg);
+    }
+
+    [role="tab"][aria-selected="true"] {
+      background-color: var(--color-primary);
+      color: var(--color-primary-fg);
+      border-color: var(--color-primary);
+      box-shadow: none;
+    }
+
+    [role="tab"]:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+
+    [role="tabpanel"] {
+      padding: var(--space-4);
+      border: 1px solid var(--border);
+      border-top: none; /* Connect visually if desired, but separate allows flexibility */
+      margin-top: var(--space-2);
+      background: var(--surface);
+      outline: none;
+    }
+
+    [role="tabpanel"][hidden] {
+      display: none;
+    }
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      overflow: visible;
+      z-index: 100;
+    }
+
+    .toast-container[data-placement="top-right"] {
+      inset: var(--space-4) var(--space-4) auto auto;
+    }
+
+    .toast-container[data-placement="top-left"] {
+      inset: var(--space-4) auto auto var(--space-4);
+    }
+
+    .toast-container[data-placement="bottom-right"] {
+      inset: auto var(--space-4) var(--space-4) auto;
+      flex-direction: column-reverse;
+    }
+
+    .toast-container[data-placement="bottom-left"] {
+      inset: auto auto var(--space-4) var(--space-4);
+      flex-direction: column-reverse;
+    }
+
+    .toast-container::backdrop { display: none; }
+
+    .toast {
+      padding: var(--space-4);
+      max-width: 24rem;
+      min-width: 18rem;
+      pointer-events: auto;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-left-width: 4px;
+      border-radius: var(--radius-sharp);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+      margin: var(--space-2) 0;
+      transition: opacity 200ms, transform 200ms;
+    }
+
+    .toast-title {
+      font-weight: 700;
+      margin-bottom: var(--space-1);
+      color: var(--fg);
+    }
+
+    .toast-message {
+      font-size: 0.9em;
+      color: var(--muted);
+    }
+
+    /* Variants */
+    .toast[data-variant="info"] { border-left-color: var(--color-primary); }
+    .toast[data-variant="success"] { border-left-color: var(--color-success); }
+    .toast[data-variant="warning"] { border-left-color: var(--color-warning); }
+    .toast[data-variant="danger"] { border-left-color: var(--color-danger); }
+
+    /* Animation States */
+    .toast[data-state="entering"] {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .toast[data-state="exiting"] {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    /* Tooltip */
+    [data-tooltip] {
+      position: relative;
+      cursor: help;
+    }
+
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      padding: var(--space-2) var(--space-3);
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.8em;
+      white-space: nowrap;
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      pointer-events: none;
+      z-index: 1000;
+      margin-bottom: 8px;
+    }
+
+    [data-tooltip]:hover::after,
+    [data-tooltip]:focus-visible::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    /* Triangle */
+    [data-tooltip]::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      border: 6px solid transparent;
+      border-top-color: var(--fg);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      z-index: 1000;
+      margin-bottom: -4px; /* nudge down to touch box */
+    }
+
+    [data-tooltip]:hover::before,
+    [data-tooltip]:focus-visible::before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+      transition-delay: 0.2s;
+    }
+
+    /* =========================================
+       LANDING PAGE SPECIFIC STYLES
+       ========================================= */
+    .hero-section {
+      padding: var(--space-8) 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 50vh;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    
+    .nav-header {
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-block {
+      padding: var(--space-6);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-sm);
+      margin-top: var(--space-2);
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="nav-header">
+    <div class="container flex" style="padding-top: 0; padding-bottom: 0; justify-content: space-between;">
+      <div style="font-weight: 700; font-size: 1.25rem;">🌾 Barley</div>
+      <nav class="flex" style="gap: var(--space-4);">
+        <a href="/docs/components/" style="text-decoration: none; font-size: 0.9em;">Components</a>
+        <a href="/docs/usage/" style="text-decoration: none; font-size: 0.9em;">Get Started</a>
+        <button id="theme-toggle" class="btn" data-variant="ghost" aria-label="Toggle Theme" title="Toggle Dark Mode">
+          🌗
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="container hero-section text-center">
+    <span class="badge" data-role="badge" data-variant="accent" style="margin-bottom: var(--space-4);">v1.0.0 released</span>
+    <h1>Sharp. Minimal. Semantic.</h1>
+    <p style="font-size: 1.25rem; max-width: 600px; color: var(--muted);">
+      Barley UI is a zero-dependency, semantic CSS/JS library for building modern web interfaces. Extremely lightweight. Load it and forget it.
+    </p>
+    
+    <div class="hero-buttons">
+      <a href="/docs/usage/" class="btn" data-variant="primary">Get Started</a>
+      <a href="/docs/components/" class="btn" data-variant="default">View Components</a>
+    </div>
+  </main>
+
+  <!-- FEATURES GRID -->
+  <section class="container">
+    <div class="grid">
+      <!-- Feature 1 -->
+      <div data-role="card" class="feature-card">
+        <h3>⚡ Zero Dependencies</h3>
+        <p>Pure CSS and Vanilla JS. No build steps, no complex frameworks, no npm install required. Just drop it in.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div data-role="card" class="feature-card">
+        <h3>💎 Semantic</h3>
+        <p>Styles native HTML elements directly. Accessible by default. We use <code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, and <code>&lt;progress&gt;</code>.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div data-role="card" class="feature-card">
+        <h3>🪶 ~8KB</h3>
+        <p>Extremely lightweight. Designed for speed and performance. Perfect for static sites, prototypes, and minimalist apps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS SHOWCASE -->
+  <section id="components" class="container">
+    <div style="border-bottom: 2px solid var(--border); margin-bottom: var(--space-6); padding-bottom: var(--space-2);">
+      <h2>Components</h2>
+      <p>A tour of the built-in styles and web components.</p>
+    </div>
+
+    <div class="grid">
+      
+      <!-- Buttons -->
+      <div data-role="card">
+        <h4>Buttons</h4>
+        <div class="flex" style="gap: var(--space-2); margin-bottom: var(--space-4);">
+          <button data-variant="primary">Primary</button>
+          <button data-variant="secondary">Secondary</button>
+          <button data-variant="accent">Accent</button>
+        </div>
+        <div class="flex" style="gap: var(--space-2);">
+          <button data-variant="default">Default</button>
+          <button data-variant="ghost">Ghost</button>
+          <button disabled>Disabled</button>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div data-role="card">
+        <h4>Badges</h4>
+        <div class="flex" style="gap: var(--space-2);">
+          <span class="badge" data-variant="primary">New</span>
+          <span class="badge" data-variant="success">Active</span>
+          <span class="badge" data-variant="warning">Pending</span>
+          <span class="badge" data-variant="danger">Error</span>
+          <span class="badge" data-variant="outline">Outline</span>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <div data-role="card">
+        <h4>Forms</h4>
+        <label for="demo-email">Email Address</label>
+        <input type="email" id="demo-email" placeholder="you@example.com">
+        
+        <label for="demo-select">Preference</label>
+        <select id="demo-select">
+          <option>Option 1</option>
+          <option>Option 2</option>
+        </select>
+      </div>
+
+      <!-- Interactive Accordion -->
+      <div data-role="card">
+        <h4>Accordion</h4>
+        <details>
+          <summary>What is Barley?</summary>
+          <p>Barley is a lightweight UI kit that focuses on semantic HTML and minimal class usage.</p>
+        </details>
+        <details>
+          <summary>Is it free?</summary>
+          <p>Yes, it is open source and free to use for personal and commercial projects.</p>
+        </details>
+      </div>
+
+      <!-- Tabs Component -->
+      <div data-role="card">
+        <h4>Tabs (Web Component)</h4>
+        <barley-tabs>
+          <div role="tablist">
+            <button role="tab" aria-selected="true">Account</button>
+            <button role="tab">Settings</button>
+          </div>
+          <div role="tabpanel">
+            <p style="margin:0">Account details go here.</p>
+          </div>
+          <div role="tabpanel" hidden>
+            <p style="margin:0">Change your settings here.</p>
+          </div>
+        </barley-tabs>
+      </div>
+
+      <!-- Toasts & Tooltips -->
+      <div data-role="card">
+        <h4>Feedback</h4>
+        <div class="flex">
+          <button onclick="window.barley.toast('Operation successful!', 'Success', {variant:'success'})" class="btn" data-variant="secondary">
+            Show Toast
+          </button>
+          <button class="btn" data-variant="default" data-tooltip="This is a tooltip!">
+            Hover me
+          </button>
+        </div>
+      </div>
+
+      <!-- Dropdown -->
+      <div data-role="card">
+        <h4>Dropdown</h4>
+        <barley-dropdown>
+          <button class="btn" popovertarget="my-dropdown" data-variant="default">
+            Options ▾
+          </button>
+          <div id="my-dropdown" popover role="menu">
+            <button role="menuitem">Profile</button>
+            <button role="menuitem">Billing</button>
+            <hr>
+            <button role="menuitem" style="color: var(--color-danger)">Logout</button>
+          </div>
+        </barley-dropdown>
+      </div>
+
+      <!-- Loading States -->
+      <div data-role="card">
+        <h4>Loading</h4>
+        <div class="flex">
+          <div class="spinner" data-role="spinner"></div>
+          <div data-role="skeleton" data-shape="text" style="width: 100px;"></div>
+        </div>
+        <progress value="40" max="100" style="margin-top: 1rem;"></progress>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GET STARTED -->
+  <section id="get-started" class="container" style="max-width: 800px;">
+    <h2>Get Started</h2>
+    <p>Simply include the CSS and JS files in your project. No build step required.</p>
+    
+    <div class="demo-block" style="background: var(--muted-light); border: 1px solid var(--border);">
+      <code>
+        &lt;link rel="stylesheet" href="barley.css"&gt;<br>
+        &lt;script src="barley.js" defer&gt;&lt;/script&gt;
+      </code>
+    </div>
+    
+    <div style="margin-top: var(--space-6);">
+      <button class="btn" data-variant="primary">Download ZIP</button>
+      <button class="btn" data-variant="ghost">View on GitHub</button>
+    </div>
+  </section>
+
+  <footer class="container text-center" style="margin-top: var(--space-8); border-top: 1px solid var(--border);">
+    <p style="font-size: 0.9em; color: var(--muted); margin: 0 auto;">
+      &copy; 2024 Barley UI. Sharp. Minimal. Semantic.
+    </p>
+  </footer>
+
+  <script>
+    /* =========================================
+       BARLEY JS (Embed)
+       ========================================= */
+    /**
+     * Barley UI - Core
+     * Base class for Web Components and essential polyfills.
+     */
+
+    class BarleyBase extends HTMLElement {
+      #initialized = false;
+
+      connectedCallback() {
+        if (this.#initialized) return;
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.#setup(), { once: true });
+        } else {
+          this.#setup();
+        }
+      }
+
+      #setup() {
+        if (this.#initialized) return;
+        this.#initialized = true;
+        this.init();
+      }
+
+      // Override in subclasses
+      init() {}
+
+      disconnectedCallback() {
+        this.cleanup();
+      }
+
+      // Override in subclasses
+      cleanup() {}
+
+      // Event handler interface
+      handleEvent(event) {
+        const handler = this[`on${event.type}`];
+        if (handler) handler.call(this, event);
+      }
+
+      // Utilities
+      emit(name, detail = null) {
+        return this.dispatchEvent(new CustomEvent(name, {
+          bubbles: true,
+          composed: true,
+          cancelable: true,
+          detail
+        }));
+      }
+
+      $(selector) { return this.querySelector(selector); }
+      $$(selector) { return Array.from(this.querySelectorAll(selector)); }
+
+      uid() {
+        return Math.random().toString(36).slice(2, 10);
+      }
+    }
+
+    // Global export
+    if (typeof window !== 'undefined') {
+      window.BarleyBase = BarleyBase;
+    }
+
+    // Polyfill for command/commandfor (Safari/older browsers)
+    // Enables declarative control of dialogs/popovers
+    if (!('commandForElement' in HTMLButtonElement.prototype)) {
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('[commandfor]');
+        if (!btn) return;
+
+        const target = document.getElementById(btn.getAttribute('commandfor'));
+        if (!target) return;
+
+        const command = btn.getAttribute('command') || 'toggle';
+
+        if (target instanceof HTMLDialogElement) {
+          if (command === 'show-modal') target.showModal();
+          else if (command === 'close') target.close();
+          else target.open ? target.close() : target.showModal();
+        }
+      });
+    }
+    /**
+     * Barley UI - Dropdown
+     * <barley-dropdown>
+     */
+
+    class BarleyDropdown extends BarleyBase {
+      #menu;
+      #trigger;
+      #position;
+
+      init() {
+        this.#menu = this.$('[popover]');
+        this.#trigger = this.$('[popovertarget]');
+
+        if (!this.#menu || !this.#trigger) return;
+
+        this.#menu.addEventListener('toggle', this);
+        this.#menu.addEventListener('keydown', this);
+
+        this.#position = () => {
+          const rect = this.#trigger.getBoundingClientRect();
+          // Position is fixed, so use viewport coordinates (rect) directly.
+          this.#menu.style.top = `${rect.bottom + 4}px`; 
+          this.#menu.style.left = `${rect.left}px`;
+          
+          // Prevent running off screen right
+          if (rect.left + 200 > window.innerWidth) {
+              this.#menu.style.left = 'auto';
+              this.#menu.style.right = '1rem';
+          }
+        };
+      }
+
+      ontoggle(e) {
+        const isOpen = e.newState === 'open';
+        if (isOpen) {
+          this.#position();
+          window.addEventListener('scroll', this.#position, true);
+          window.addEventListener('resize', this.#position, true);
+          
+          const firstItem = this.$('[role="menuitem"]');
+          if (firstItem) firstItem.focus();
+          
+          this.#trigger.setAttribute('aria-expanded', 'true');
+          this.#menu.setAttribute('data-state', 'open');
+        } else {
+          window.removeEventListener('scroll', this.#position, true);
+          window.removeEventListener('resize', this.#position, true);
+          this.#trigger.setAttribute('aria-expanded', 'false');
+          this.#menu.removeAttribute('data-state');
+          this.#trigger.focus();
+        }
+      }
+
+      onkeydown(e) {
+        // Arrow key navigation
+        if (['ArrowDown', 'ArrowUp'].includes(e.key)) {
+          e.preventDefault();
+          const items = this.$$('[role="menuitem"]');
+          const idx = items.indexOf(document.activeElement);
+          
+          if (idx === -1) {
+            items[0]?.focus();
+            return;
+          }
+
+          const nextIdx = e.key === 'ArrowDown' 
+            ? (idx + 1) % items.length 
+            : (idx - 1 + items.length) % items.length;
+            
+          items[nextIdx]?.focus();
+        }
+        
+        // Close on Escape (native popover handles this usually, but safe to add)
+      }
+
+      cleanup() {
+        window.removeEventListener('scroll', this.#position, true);
+        window.removeEventListener('resize', this.#position, true);
+      }
+    }
+
+    customElements.define('barley-dropdown', BarleyDropdown);
+    /**
+     * Barley UI - Sidebar
+     * Handles mobile toggle.
+     */
+
+    document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('[data-sidebar-toggle]');
+      if (toggle) {
+        const layout = document.querySelector('[data-layout="sidebar"]');
+        if (layout) {
+          const isOpen = layout.getAttribute('data-open') === 'true';
+          layout.setAttribute('data-open', !isOpen);
+        }
+      }
+      
+      // Close when clicking outside on mobile (optional enhancement)
+      if (window.innerWidth <= 768) {
+        const layout = document.querySelector('[data-layout="sidebar"][data-open="true"]');
+        if (layout && !e.target.closest('aside') && !toggle) {
+            layout.setAttribute('data-open', 'false');
+        }
+      }
+    });
+    /**
+     * Barley UI - Tabs
+     * <barley-tabs>
+     */
+
+    class BarleyTabs extends BarleyBase {
+      #tabs = [];
+      #panels = [];
+
+      init() {
+        const tablist = this.$('[role="tablist"]');
+        if (!tablist) return;
+
+        this.#tabs = [...tablist.querySelectorAll('[role="tab"]')];
+        this.#panels = this.$$('[role="tabpanel"]');
+
+        this.#tabs.forEach((tab, i) => {
+          // Basic ARIA setup
+          const panel = this.#panels[i];
+          if (panel) {
+            const id = this.uid();
+            tab.id = tab.id || `tab-${id}`;
+            panel.id = panel.id || `panel-${id}`;
+            tab.setAttribute('aria-controls', panel.id);
+            panel.setAttribute('aria-labelledby', tab.id);
+          }
+
+          tab.addEventListener('click', () => this.activate(i));
+          tab.addEventListener('keydown', (e) => this.handleKey(e, i));
+        });
+      }
+
+      activate(index) {
+        this.#tabs.forEach((tab, i) => {
+          const isActive = i === index;
+          tab.setAttribute('aria-selected', isActive);
+          tab.setAttribute('tabindex', isActive ? 0 : -1);
+          if (this.#panels[i]) {
+            this.#panels[i].hidden = !isActive;
+          }
+        });
+      }
+
+      handleKey(e, index) {
+        let newIndex = index;
+        if (e.key === 'ArrowRight') {
+          newIndex = (index + 1) % this.#tabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (index - 1 + this.#tabs.length) % this.#tabs.length;
+        } else {
+          return;
+        }
+        
+        e.preventDefault();
+        this.activate(newIndex);
+        this.#tabs[newIndex].focus();
+      }
+    }
+
+    customElements.define('barley-tabs', BarleyTabs);
+    /**
+     * Barley UI - Toast
+     * window.barley.toast('Message', 'Title', { variant: 'success' })
+     */
+
+    const barley = window.barley || (window.barley = {});
+    const containers = {};
+
+    function getContainer(placement = 'top-right') {
+      if (!containers[placement]) {
+        const el = document.createElement('div');
+        el.className = 'toast-container';
+        el.setAttribute('data-placement', placement);
+        el.setAttribute('popover', 'manual');
+        document.body.appendChild(el);
+        el.showPopover(); // Always open container
+        containers[placement] = el;
+      }
+      return containers[placement];
+    }
+
+    barley.toast = function(message, title, options = {}) {
+      const { 
+        variant = 'info', 
+        duration = 4000, 
+        placement = 'top-right' 
+      } = options;
+
+      const container = getContainer(placement);
+      
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.setAttribute('data-variant', variant);
+      toast.setAttribute('data-state', 'entering');
+
+      let html = '';
+      if (title) html += `<div class="toast-title">${title}</div>`;
+      if (message) html += `<div class="toast-message">${message}</div>`;
+      toast.innerHTML = html;
+
+      // Add click to dismiss
+      toast.onclick = () => removeToast(toast);
+
+      // Auto dismiss
+      if (duration > 0) {
+        setTimeout(() => removeToast(toast), duration);
+      }
+
+      container.appendChild(toast);
+
+      // Trigger animation
+      requestAnimationFrame(() => {
+        toast.removeAttribute('data-state');
+      });
+
+      function removeToast(el) {
+        el.setAttribute('data-state', 'exiting');
+        el.addEventListener('transitionend', () => el.remove(), { once: true });
+        // Fallback if transition fails
+        setTimeout(() => el.remove(), 300);
+      }
+    };
+    /**
+     * Barley UI - Tooltip
+     * Converts title attributes to data-tooltip.
+     */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const tooltips = document.querySelectorAll('[title]');
+      tooltips.forEach(el => {
+        const text = el.getAttribute('title');
+        if (text) {
+          el.setAttribute('data-tooltip', text);
+          if (!el.hasAttribute('aria-label')) {
+            el.setAttribute('aria-label', text);
+          }
+          el.removeAttribute('title');
+        }
+      });
+    });
+
+    // Landing Page Specific: Theme Toggle Logic
+    const toggle = document.getElementById('theme-toggle');
+    if(toggle) {
+      toggle.addEventListener('click', () => {
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme');
+        root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barley UI</title>
+  
+  <link rel="stylesheet" href="/barley.min.css">
+  <script src="/barley.min.js" defer></script>
+  <script src="/main.js" defer></script>
+  
+  <script>
+    // Theme toggle logic
+    (function() {
+      // FORCE light mode as requested, overriding any previous user preference
+      var t = 'light';
+      localStorage.setItem('theme', 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+  </script>
+
+  <style>
+    /* Documentation specific overrides */
+    :root {
+      --sidebar-width: 260px;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    aside.docs-sidebar {
+      width: var(--sidebar-width);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: var(--space-4);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    aside.docs-sidebar header {
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding-bottom: var(--space-4);
+      margin-bottom: var(--space-4);
+      border-bottom: 2px solid var(--border);
+    }
+
+    aside.docs-sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    aside.docs-sidebar nav li {
+      margin-bottom: var(--space-2);
+    }
+
+    aside.docs-sidebar nav a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+    }
+
+    aside.docs-sidebar nav a:hover,
+    aside.docs-sidebar nav a.active {
+      color: var(--fg);
+      background: var(--muted-light);
+    }
+
+    aside.docs-sidebar footer {
+      margin-top: auto;
+      padding-top: var(--space-4);
+    }
+
+    /* Main Content */
+    main.docs-content {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: var(--space-8);
+      max-width: 900px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      aside.docs-sidebar {
+        transform: translateX(-100%);
+        transition: transform var(--transition-fast);
+      }
+      
+      aside.docs-sidebar.open {
+        transform: translateX(0);
+      }
+
+      main.docs-content {
+        margin-left: 0;
+        padding-top: var(--space-12);
+      }
+
+      .mobile-toggle {
+        position: fixed;
+        top: var(--space-2);
+        left: var(--space-2);
+        z-index: 20;
+        display: block;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-toggle {
+        display: none;
+      }
+    }
+    
+    /* Syntax Highlighting overrides */
+    pre {
+      padding: var(--space-4);
+      background: #1e1e1e !important; /* Force dark background */
+      color: #d4d4d4 !important;      /* Force light text */
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+    }
+
+    /* Fix for "zebra striping" - reset global code styles inside pre blocks */
+    pre code {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      font-size: inherit !important;
+      /* removed color: inherit !important to fix syntax highlighting */
+    }
+     
+    
+    /* Demo Tabs - Clean Pill Style */
+    .demo-tabs {
+      display: inline-flex;
+      background: #f4f4f5 !important; /* var(--muted-light) specific override */
+      padding: 4px; 
+      border-radius: 6px; /* var(--radius) */
+      gap: 4px;
+      margin-bottom: var(--space-4);
+      border: 1px solid var(--border);
+    }
+    
+    .demo-tab {
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 6px 14px !important;
+      border: none !important;
+      background: transparent !important;
+      cursor: pointer;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important; /* Slightly bolder */
+      color: #71717a !important; /* var(--muted) specific */
+      border-radius: 4px !important; /* var(--radius-sm) */
+      transition: all 0.15s ease;
+      line-height: 1 !important;
+      height: auto !important;
+      box-shadow: none !important;
+    }
+    
+    .demo-tab:hover {
+      color: #111 !important;
+    }
+    
+    .demo-tab.active {
+      background: #ffffff !important;
+      color: #000000 !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    }
+
+    .demo-preview {
+      padding: var(--space-6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: var(--space-4);
+      background: var(--surface);
+    }
+
+    /* Force dark theme for code blocks */
+    pre {
+      background: #1f2937 !important; /* Slate-800 */
+      color: #e5e7eb !important;      /* Gray-200 */
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      overflow-x: auto;
+    }
+
+    /* Zola Syntax Highlighting - Manual "Charcoal" Theme */
+    
+    /* Comments */
+    .zola-comment, .zola-quote {
+      color: #6b7280; /* Gray-500 */
+      font-style: italic;
+    }
+
+    /* Keywords, Storage, Selectors */
+    .zola-keyword, .zola-storage, .zola-selector, .zola-operator {
+      color: #c678dd; /* Purple */
+    }
+
+    /* Functions, Classes, Tags */
+    .zola-function, .zola-class, .zola-entity-name-tag, .zola-tag {
+      color: #ef4444; /* Red-500 - Matches Oat screenshot tags */
+    }
+
+    /* Attributes, Variables */
+    .zola-attribute, .zola-variable, .zola-entity-other-attribute-name {
+      color: #60a5fa; /* Blue-400 */
+    }
+
+    /* Strings */
+    .zola-string, .zola-constant {
+      color: #34d399; /* Emerald-400 */
+    }
+
+    /* Numbers/Booleans */
+    .zola-number, .zola-boolean {
+      color: #f59e0b; /* Amber-500 */
+    }
+    
+    /* Fallback for generic text */
+    .zola-text {
+      color: #e5e7eb;
+    }
+
+    /* Fix z-index or stacking context if needed */
+    .demo-preview .demo-content {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile Toggle -->
+  <button class="mobile-toggle" onclick="document.querySelector('.docs-sidebar').classList.toggle('open')">☰ Menu</button>
+
+  <aside class="docs-sidebar">
+    <header>
+      <a href="/" style="text-decoration: none; color: inherit;">🌾 Barley</a>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><a href="/">Introduction</a></li>
+        <li><a href="/usage/">Installation & Usage</a></li>
+        <li>
+          <strong style="display:block; margin: var(--space-4) 0 var(--space-2); font-size: 0.9em; opacity: 0.7;">COMPONENTS</strong>
+        </li>
+        <li><a href="/components/accordion">Accordion</a></li>
+        <li><a href="/components/alert">Alert</a></li>
+        <li><a href="/components/badge">Badge</a></li>
+        <li><a href="/components/button">Button</a></li>
+        <li><a href="/components/card">Card</a></li>
+        <li><a href="/components/dialog">Dialog</a></li>
+        <li><a href="/components/dropdown">Dropdown</a></li>
+        <li><a href="/components/form">Form</a></li>
+        <li><a href="/components/progress">Progress</a></li>
+        <li><a href="/components/sidebar">Sidebar</a></li>
+        <li><a href="/components/skeleton">Skeleton</a></li>
+        <li><a href="/components/spinner">Spinner</a></li>
+        <li><a href="/components/table">Table</a></li>
+        <li><a href="/components/tabs">Tabs</a></li>
+        <li><a href="/components/toast">Toast</a></li>
+        <li><a href="/components/tooltip">Tooltip</a></li>
+      </ul>
+    </nav>
+
+    <footer>
+      <button class="small outline" onclick="toggleTheme()">Dark Mode</button>
+    </footer>
+  </aside>
+
+  <main class="docs-content">
+    
+  <h1>Tabs</h1>
+  
+  <div class="page-content">
+    <p>Switch between different views of content.</p>
+<h2 id="usage">Usage</h2>
+<p>Use the <code>&lt;barley-tabs&gt;</code> component with standard ARIA roles: <code>tablist</code>, <code>tab</code>, and <code>tabpanel</code>.</p>
+<!-- simple wrapper, content should be a markdown code block -->
+<div class="demo-box">
+    <pre><code data-lang="html">&lt;barley-tabs&gt;
+  &lt;div role=&quot;tablist&quot;&gt;
+    &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Tab 1&lt;/button&gt;
+    &lt;button role=&quot;tab&quot; tabindex=&quot;-1&quot;&gt;Tab 2&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div role=&quot;tabpanel&quot;&gt;
+    Content 1
+  &lt;/div&gt;
+
+  &lt;div role=&quot;tabpanel&quot; hidden&gt;
+    Content 2
+  &lt;/div&gt;
+&lt;/barley-tabs&gt;
+</code></pre>
+
+</div>
+<h2 id="accessibility">Accessibility</h2>
+<p>Barley automatically handles:</p>
+<ul>
+<li><strong>Keyboard Navigation</strong>: Left/Right arrows to switch tabs.</li>
+<li><strong>ARIA</strong>: Updates <code>aria-selected</code> and <code>hidden</code> attributes.</li>
+<li><strong>Focus</strong>: Manages <code>tabindex</code>.</li>
+</ul>
+
+  </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* Skeleton */
+[data-role="skeleton"] {
+  background: var(--muted-light);
+  border-radius: var(--radius-sm);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: var(--space-2);
+}
+
+[data-role="skeleton"][data-shape="text"] {
+  height: 1em;
+  width: 100%;
+}
+
+[data-role="skeleton"][data-shape="rect"] {
+  width: 100%;
+  height: 100px;
+}
+
+[data-role="skeleton"][data-shape="circle"] {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

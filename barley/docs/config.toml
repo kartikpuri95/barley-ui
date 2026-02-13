@@ -1,0 +1,11 @@
+base_url = "/"
+title = "Barley UI"
+compile_sass = false
+build_search_index = true
+
+[markdown]
+    # Zola 0.22+ configuration
+    # theme = "base16-ocean-dark" (Default)
+
+[extra]
+description = "Barley - Sharp, Minimal, Semantic UI library."
