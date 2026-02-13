@@ -13,8 +13,9 @@ zola build --base-url /docs/ --output-dir ../../public/docs
 cd ../..
 
 echo "🏠 Setting up Landing Page..."
-# Copy landing page to root of public
+# Copy landing page and favicon to root of public
 cp index.html public/index.html
+cp favicon.svg public/favicon.svg
 
 # Copy dist files if needed (e.g. if index.html or docs reference them relative to root)
 mkdir -p public/dist
