@@ -24,8 +24,8 @@ Include them in your project:
 Clone the repository and build using `make`:
 
 ```bash
-git clone https://github.com/your-repo/barley.git
-cd barley
+git clone https://github.com/kartikpuri95/barley-ui
+cd barley-ui
 make dist
 ```
 

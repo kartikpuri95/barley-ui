@@ -116,6 +116,8 @@ This repository contains the source code and the documentation site generator.
 To build the entire project (Docs + Landing Page) into a `public/` directory ready for deployment:
 
 ```bash
+git clone https://github.com/kartikpuri95/barley-ui
+cd barley-ui
 ./build.sh
 ```
 
